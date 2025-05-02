@@ -1,2 +1,24 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="row">
+    {{#each products as |product|}}
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="text-center">
+                    <img src="{{product.imgUrl}}" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{product.name}}</h5>
+                    <p class="card-text">
+                        Storage Capacity: {{product.info.storageCapacity}} GB <br>
+                        Numbers of SIM: {{product.info.numberOfSIM}} SIMs <br>
+                        Rear Camera Resolution: {{product.info.cameraResolution}} MP <br>
+                        Display Size (inch): {{product.info.displaySize}} inches <br>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="price">$ {{product.price}}</div>
+                        <a href="#" class="btn btn-success">Buy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

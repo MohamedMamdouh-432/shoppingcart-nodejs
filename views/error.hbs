@@ -1,3 +1,9 @@
-<h1>{{message}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<div class='error-box'>
+    <img src='/images/error.png' alt='Error' class='error-img' />
+    <h1 class='text-danger'>Oops! Something went wrong</h1>
+    <p class='lead'>{{message}}</p>
+    <a onclick="history.back()" class='btn btn-secondary mt-3'>
+        <i class='fa-solid fa-arrow-left'></i>
+        <span class="ms-2">Go Back</span>
+    </a>
+</div>

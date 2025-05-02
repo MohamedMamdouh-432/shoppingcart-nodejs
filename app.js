@@ -1,40 +1,62 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// core & third party modules
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const expressHbs = require('express-handlebars');
+const handlebars = require('handlebars');
+const hbsAccess = require('@handlebars/allow-prototype-access');
+const expressSession = require('express-session');
+// custom modules
+const indexRouter = require('./routes/index_route');
+const usersRouter = require('./routes/user_route');
+const { handleRenderError } = require('./controllers/error_controller');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// express setup
+const app = express();
+app.engine(
+    '.hbs',
+    expressHbs.engine({
+        handlebars: hbsAccess.allowInsecurePrototypeAccess(handlebars),
+        defaultLayout: 'layout',
+        extname: '.hbs',
+    })
+);
+app.set('view engine', '.hbs');
 
-var app = express();
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
+// middleware setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+    expressSession({
+        secret: 'shopping-cart_?@!',
+        resave: false,
+        saveUninitialized: false,
+    })
+);
 app.use(express.static(path.join(__dirname, 'public')));
 
+// database setup
+mongoose
+    .connect('mongodb://localhost:27017/shopping-cart')
+    .then(() => console.log('🔥 Connected to Shopping Cart Database 🔥'))
+    .catch((err) => console.log('🐛 Error connecting to MongoDB 🐛', err));
+
+// routes setup
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-
-app.use(function(err, req, res, next) {
-  
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  
-  res.status(err.status || 500);
-  res.render('error');
+// error handling
+app.use(handleRenderError);
+app.all('*', (req, res, next) => {
+    error = {
+        statusCode: 404,
+        name: 'NotFoundError',
+    };
+    handleRenderError(error, req, res, next);
 });
 
 module.exports = app;

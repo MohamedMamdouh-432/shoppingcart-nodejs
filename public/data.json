@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Apple iPhone X",
+        "imgUrl": "/public/images/Apple iPhone X.jpg",
+        "info": {
+            "storageCapacity": 64,
+            "numberOfSIM": "Single",
+            "cameraResolution": 12,
+            "displaySize": 5.8
+        },
+        "price": 800
+    },
+    {
+        "name": "HTC Desire 10 Pro",
+        "imgUrl": "/public/images/HTC Desire 10 Pro.jpg",
+        "info": {
+            "storageCapacity": 128,
+            "numberOfSIM": "Dual",
+            "cameraResolution": 12,
+            "displaySize": 5.7
+        },
+        "price": 200
+    },
+    {
+        "name": "Huawei Y9 2019",
+        "imgUrl": "/public/images/Huawei Y9 2019.jpg",
+        "info": {
+            "storageCapacity": 64,
+            "numberOfSIM": "Dual",
+            "cameraResolution": 13,
+            "displaySize": 6.5
+        },
+        "price": 300
+    },
+    {
+        "name": "Oppo A3S",
+        "imgUrl": "/public/images/Oppo A3S.jpg",
+        "info": {
+            "storageCapacity": 32,
+            "numberOfSIM": "Dual",
+            "cameraResolution": 13,
+            "displaySize": 6.2
+        },
+        "price": 500
+    },
+    {
+        "name": "Samsung Galaxy Note 10",
+        "imgUrl": "/public/images/Samsung Galaxy Note 10.jpg",
+        "info": {
+            "storageCapacity": 128,
+            "numberOfSIM": "Dual",
+            "cameraResolution": 12,
+            "displaySize": 6.3
+        },
+        "price": 430
+    },
+    {
+        "name": "Sony Xperia XZ1",
+        "imgUrl": "/public/images/Sony Xperia XZ1.jpg",
+        "info": {
+            "storageCapacity": 64,
+            "numberOfSIM": "Dual",
+            "cameraResolution": 19,
+            "displaySize": 5.7
+        },
+        "price": 350
+    }
+]
